@@ -1,0 +1,75 @@
+<div *ngIf = !isClicked >
+  <div class="row h-100 my-4">
+    <div class="col-lg-7 p-1">
+      <img class="w-75 d-block mx-auto" src="../assets/Images/logo.png" alt="">
+    </div>
+    <div class="col-lg-5 px-4 my-auto">
+      <button class="btn btn-outline-light rounded rounded-pill w-75 py-4 px-3 d-block mx-auto" (click)="switch();"><span class="display-5"><b>Get Started</b></span></button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf = isClicked >
+  <h1 class="text-center text-light display-1 mt-5">C<span class="display-4">F</span>G <span class="text-secondary display-4">to</span> PD<span class="display-4">A</span></h1>
+  <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+    <div class="row mt-5">
+      <div class="col-lg-3 col-md-3 col-sm-1"></div>
+      <div class="my-5 mx-auto col-lg-6 col-md-6 col-sm-10">
+        <label class="form-label text-light text-center d-block mx-auto mb-4">Enter the Context Free Grammar which is to to be converted in <b>Greibach Normal Form</b></label>
+        <textarea class="form-control bg-dark text-light text-start border-bottom border-light w-75 d-block mx-auto" required formControlName="grammar" id="ip" rows="8" placeholder="
+        S → aB | aCA | aBACA | aA | aBAA  
+        A → aC | aBAC | a | aBA  
+        C →  aCAC | aBACAC | aAC | aBAAC  
+        C → aCA | aBACA | aA | aBAA  
+        B → b  
+        X → a  
+        "></textarea>
+        <div *ngIf="isSubmitted && formControls.grammar.errors?.required" class="text-danger mt-2 text-center"><small>This field is required</small></div>
+        <button type="submit" class="btn btn-outline-light d-block mx-auto mt-5 w-50 p-3 rounded-pill"><b>Convert</b></button>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-1"></div>
+    </div>
+  </form>
+  
+  <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 mx-2 border border-secondary rounded">
+      <h4 class="text-center text-light my-4">Push Down Automata</h4>
+      <div *ngFor="let i of result">
+        <p class="text-center text-light">{{i}}</p>
+      </div>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 mx-2 border border-secondary rounded">
+      <h4 class="text-center text-light my-4">Productions in CFG</h4>
+      <div *ngFor="let i of finalProductions">
+        <p class="text-center text-light">{{i}}</p>
+      </div>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 mx-2 border border-secondary rounded">
+      <h4 class="text-center text-light my-4">Variables in CFG</h4>
+      <div *ngFor="let i of finalVariables">
+        <p class="text-center text-light">{{i}}</p>
+      </div>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 mx-2 border border-secondary rounded">
+      <h4 class="text-center text-light my-4">Terminals in CFG</h4>
+      <div *ngFor="let i of finalTerminals">
+        <p class="text-center text-light">{{i}}</p>
+      </div>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  <button class="btn btn-outline-light d-block mx-auto mt-5 w-50 p-3 rounded-pill my-4" (click)="switch()"><b>Go back to Home</b></button>
+</div>
