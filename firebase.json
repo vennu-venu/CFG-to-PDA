@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/CFGtoPDA",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
